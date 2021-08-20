@@ -28,15 +28,24 @@ def get_one_page(URL):
     ear_depth_unit = (jsondata['records']['earthquake'][0]['earthquakeInfo']['depth']['unit'])
     location = (jsondata['records']['earthquake'][0]['earthquakeInfo']['epiCenter']['location'])
     inf_area =  (len(jsondata['records']['earthquake'][0]['intensity']['shakingArea']))
+    png = (jsondata['records']['earthquake'][0]['shakemapImageURI'])
+    web = (jsondata['records']['earthquake'][0]['web'])
     print(info)#大概資訊
     print('No.',earNo)#案件編號
     print('發生位置','北緯:',epic_lat_val,epic_lat_unit,'東經:',epic_lon_val,epic_lon_unit)
     print('地震深度:',ear_depth_val,ear_depth_unit)
     print('震央位置',location)
-    for t in range(inf_area):
+    for t in range(inf_area-1):
         print((jsondata['records']['earthquake'][0]['intensity']['shakingArea'][t]['areaDesc']))
         #print('\n')
         print((jsondata['records']['earthquake'][0]['intensity']['shakingArea'][t]['areaName']))
+    print(web)
+    print(png)
+    with open('setting.json',mode='r',encoding='utf8') as jfile:
+            jdata=json.load(jfile)    
+    jdata['quake'] = earNo
+    with open('setting.json',mode='w',encoding='utf8') as jfile:
+        jdata=json.dump(jdata, jfile, indent = 4)
     #print(inf_area)
     #print(detail)
     
@@ -47,4 +56,4 @@ def get_one_page(URL):
 link = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/E-A0015-001?Authorization=CWB-C8ACFDB1-541F-435F-8351-998F26FF2B4D&format=JSON"
 # 執行單頁面網頁爬蟲
 get_one_page(link)
-# 避免被太快被 PTT 封鎖請求
+# 避免被太快被 地震 封鎖請求
