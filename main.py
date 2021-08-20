@@ -18,8 +18,20 @@ def get_one_page(URL):
     jsondata=json.loads(json_str)
     info = (jsondata['records']['earthquake'][0]['reportContent'])
     detail = (jsondata['records']['earthquake'][0]['earthquakeInfo'])
-    print(info)
-    print(detail)   
+    earNo = jsondata['records']['earthquake'][0]['earthquakeNo']
+    ori_time = (jsondata['records']['earthquake'][0]['earthquakeInfo']['originTime'])
+    epic_lat_val = (jsondata['records']['earthquake'][0]['earthquakeInfo']['epiCenter']['epiCenterLat']['value'])
+    epic_lat_unit = (jsondata['records']['earthquake'][0]['earthquakeInfo']['epiCenter']['epiCenterLat']['unit'])
+    epic_lon_val = (jsondata['records']['earthquake'][0]['earthquakeInfo']['epiCenter']['epiCenterLon']['value'])
+    epic_lon_unit = (jsondata['records']['earthquake'][0]['earthquakeInfo']['epiCenter']['epiCenterLon']['unit'])
+    ear_depth_val = (jsondata['records']['earthquake'][0]['earthquakeInfo']['depth']['value'])
+    ear_depth_unit = (jsondata['records']['earthquake'][0]['earthquakeInfo']['depth']['unit'])
+    print(info)#大概資訊
+    print('No.',earNo)#案件編號
+    print('發生位置','北緯:',epic_lat_val,epic_lat_unit,'東經:',epic_lon_val,epic_lon_unit)
+    print('地震深度:',ear_depth_val,ear_depth_unit)
+    #print(detail)
+    
 
         
 
