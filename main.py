@@ -27,7 +27,7 @@ def get_one_page(URL):
     ear_depth_unit = (jsondata['records']['earthquake'][0]['earthquakeInfo']['depth']['unit'])
     location = (jsondata['records']['earthquake'][0]['earthquakeInfo']['epiCenter']['location'])
     inf_area =  (len(jsondata['records']['earthquake'][0]['intensity']['shakingArea']))
-    png = (jsondata['records']['earthquake'][0]['shakemapImageURI'])
+    png = (jsondata['records']['earthquake'][0]['reportImageURI'])
     web = (jsondata['records']['earthquake'][0]['web'])
     print(info)#大概資訊
     print('No.',earNo)#案件編號
@@ -38,14 +38,15 @@ def get_one_page(URL):
         print((jsondata['records']['earthquake'][0]['intensity']['shakingArea'][t]['areaDesc']))
         #print('\n')
         print((jsondata['records']['earthquake'][0]['intensity']['shakingArea'][t]['areaName']))
-    print(web)
-    print(png)
+    #print(web)
+   
     with open('setting.json',mode='r',encoding='utf8') as jfile:
             jdata=json.load(jfile)    
     jdata['quake'] = earNo
     with open('setting.json',mode='w',encoding='utf8') as jfile:
         jdata=json.dump(jdata, jfile, indent = 4)
     print('地震網址',web)
+    print(png)
     #print(inf_area)
     #print(detail)
     
