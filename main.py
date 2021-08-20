@@ -26,10 +26,18 @@ def get_one_page(URL):
     epic_lon_unit = (jsondata['records']['earthquake'][0]['earthquakeInfo']['epiCenter']['epiCenterLon']['unit'])
     ear_depth_val = (jsondata['records']['earthquake'][0]['earthquakeInfo']['depth']['value'])
     ear_depth_unit = (jsondata['records']['earthquake'][0]['earthquakeInfo']['depth']['unit'])
+    location = (jsondata['records']['earthquake'][0]['earthquakeInfo']['epiCenter']['location'])
+    inf_area =  (len(jsondata['records']['earthquake'][0]['intensity']['shakingArea']))
     print(info)#大概資訊
     print('No.',earNo)#案件編號
     print('發生位置','北緯:',epic_lat_val,epic_lat_unit,'東經:',epic_lon_val,epic_lon_unit)
     print('地震深度:',ear_depth_val,ear_depth_unit)
+    print('震央位置',location)
+    for t in range(inf_area):
+        print((jsondata['records']['earthquake'][0]['intensity']['shakingArea'][t]['areaDesc']))
+        #print('\n')
+        print((jsondata['records']['earthquake'][0]['intensity']['shakingArea'][t]['areaName']))
+    #print(inf_area)
     #print(detail)
     
 
