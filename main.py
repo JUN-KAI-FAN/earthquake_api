@@ -14,7 +14,6 @@ def get_one_page(URL):
     your_key = 'CWB-C8ACFDB1-541F-435F-8351-998F26FF2B4D'
     r = requests.get(URL)
     json_str = r.text
-
     jsondata=json.loads(json_str)
     info = (jsondata['records']['earthquake'][0]['reportContent'])
     detail = (jsondata['records']['earthquake'][0]['earthquakeInfo'])
@@ -46,6 +45,7 @@ def get_one_page(URL):
     jdata['quake'] = earNo
     with open('setting.json',mode='w',encoding='utf8') as jfile:
         jdata=json.dump(jdata, jfile, indent = 4)
+    print('地震網址',web)
     #print(inf_area)
     #print(detail)
     
