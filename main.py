@@ -29,8 +29,11 @@ def get_one_page(URL):
     inf_area =  (len(jsondata['records']['earthquake'][0]['intensity']['shakingArea']))
     png = (jsondata['records']['earthquake'][0]['reportImageURI'])
     web = (jsondata['records']['earthquake'][0]['web'])
+    color = jsondata['records']['earthquake'][0]['reportColor']
     print(info)#大概資訊
     print('No.',earNo)#案件編號
+    print(type(earNo))
+    print('警戒色號',color)
     print('發生位置','北緯:',epic_lat_val,epic_lat_unit,'東經:',epic_lon_val,epic_lon_unit)
     print('地震深度:',ear_depth_val,ear_depth_unit)
     print('震央位置',location)
